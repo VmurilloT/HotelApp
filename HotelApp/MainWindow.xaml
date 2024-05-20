@@ -10,7 +10,8 @@
         Height="500" 
         Width="800" 
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None">
+        WindowStyle="None"
+        Background="#FFFFFF">
     <Grid HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                >
@@ -29,13 +30,16 @@
                        />
             <StackPanel Margin="10">
                 <ui:TextBox PlaceholderText="Usuario"
+                            Text="{Binding Usr}"
                             Margin="0,0,0,10"
                             Icon=""
                             Width="300"/>
                 <ui:PasswordBox PlaceholderText="Contraseña"
-                            Margin="0,0,0,85"
-                            Width="300"/>
+                                Margin="0,0,0,85"
+                                Width="300"
+                                Name="Txt_Psw"/>
                 <ui:Button Content="Entrar"
+                           Click="Button_Click"
                            Width="300"/>
             </StackPanel>
         
