@@ -30,6 +30,7 @@
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Content="Home"
                                      Icon="{ui:SymbolIcon Layer24}"
+                                       
                                      />
                 <ui:NavigationViewItem Content="BookRooms" 
                                      Icon="{ui:SymbolIcon PeopleAdd24}"

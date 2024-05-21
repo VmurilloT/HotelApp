@@ -1,3 +1,6 @@
 .vs/
 HotelApp/bin/
 HotelApp/obj/
+HotelApi/bin/
+HotelApi/Logs/
+HotelApi/obj/
