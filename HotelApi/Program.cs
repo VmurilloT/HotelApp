@@ -12,7 +12,7 @@ builder.Services
     .AddSwaggerGen();
 
 Log.Logger = new LoggerConfiguration()
-        .WriteTo.File($"Logs/{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}").CreateLogger();
+        .WriteTo.File($"Logs/{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.log").CreateLogger();
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog();
@@ -30,16 +30,17 @@ if (app.Environment.IsDevelopment())
 
 app.MapPost("/RegisterGhest", ([FromBody] Guest guest) =>
 {
-    try
-    {
-        var guests = new GuestCRUD(Log.Logger).SetGuest(guest);
+    var guests = new GuestCRUD(Log.Logger).SetGuest(guest);
 
+    if (guests.Result)
+    {
         return Results.Ok(guests);
     }
-    catch
+    else
     {
         return Results.Problem();
     }
+    
 });
 
 app.Run();
