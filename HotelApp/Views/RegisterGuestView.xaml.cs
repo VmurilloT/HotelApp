@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HotelApp.Models;
 using System.Windows.Threading;
+using Wpf.Ui.Controls;
 
 namespace HotelApp.Views
 {
@@ -26,37 +27,43 @@ namespace HotelApp.Views
     public partial class RegisterGuestView : Page
     {
         private DispatcherTimer _timer;
+        FontIcon xee;
+        Snackbar snackbar;
         RegisterGuestViewModel vm;
         public RegisterGuestView()
         {
             InitializeComponent();
             this.DataContext =  vm = new RegisterGuestViewModel();
-
+            xee = new FontIcon();
+            snackbar = new Snackbar(SnackbarPresenter);
             vm._messenger.Register<GuestModel>(this, ValidateModel);
             vm._messenger.Register<httpResult>(this, RegisterGood);
 
         }
 
-
         private void RegisterGood(object recipient, httpResult message)
         {
             if (message.Result)
             {
-                TxbGuardado.Visibility = Visibility.Visible;
+                xee.Glyph = "✔️";
+
+                snackbar = new Snackbar(SnackbarPresenter)
+                {
+                    Title = "Correcto",
+                    Content = "Huesped guardado correctamente.",
+                    Timeout = TimeSpan.FromSeconds(2),
+                    Appearance = ControlAppearance.Success,
+                    Icon = xee
+
+                };
+
+                snackbar.Show();
                 vm.GuestModel = new GuestModel();
             }
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5);
-            _timer.Tick += new EventHandler(_timer_Tick);
-            _timer.Start();
+           
            
         }
 
-        private void _timer_Tick(object? sender, EventArgs e)
-        {
-            TxbGuardado.Visibility = Visibility.Hidden;
-            _timer.Stop();
-        }
 
         private void ValidateModel(object recipient, GuestModel message)
         {
@@ -75,6 +82,20 @@ namespace HotelApp.Views
             {
                 TxtPhone.BorderBrush = Brushes.Red;
             }
+            
+            xee.Glyph = "❗";
+
+            snackbar = new Snackbar(SnackbarPresenter)
+            {
+                Title = "Error",
+                Content = "Faltan datos por capturar.",
+                Timeout = TimeSpan.FromSeconds(2),
+                Appearance = ControlAppearance.Danger,
+                Icon = xee
+
+            };
+
+            snackbar.Show();
         }
 
         public void Subscribe<TEvent>(EventHandler<TEvent> handler)

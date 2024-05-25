@@ -32,8 +32,8 @@
                                      Icon="{ui:SymbolIcon Layer24}"
                                        
                                      />
-                <ui:NavigationViewItem Content="BookRooms" 
-                                     Icon="{ui:SymbolIcon PeopleAdd24}"
+                <ui:NavigationViewItem Content="Reg. Huesped" 
+                                       Icon="{ui:SymbolIcon PeopleAdd24}"
                                        TargetPageType="{x:Type views:RegisterGuestView}"
                                      />
 

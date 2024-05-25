@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MahApps.Metro.IconPacks;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace HotelApp
 {
@@ -37,7 +39,23 @@ namespace HotelApp
             }
             else
             {
-                MessageBox.Show("Error al validar las credenciales.", "Login", MessageBoxButton.OK, MessageBoxImage.Hand);
+
+                
+                FontIcon xee = new FontIcon();
+                xee.Glyph = "❗";
+
+                Snackbar snackbar = new Snackbar(SnackbarPresenter)
+                {
+                    Title = "Error",
+                    Content = "Ocurrio un error validando las credenciales.",
+                    Timeout = TimeSpan.FromSeconds(2),
+                    Appearance = ControlAppearance.Danger,
+                    Icon = xee
+                   
+                };
+
+                snackbar.Show();
+                
             }
         }
 
@@ -46,5 +64,8 @@ namespace HotelApp
             Application.Current.Shutdown();
             
         }
+
+       
+
     }
 }

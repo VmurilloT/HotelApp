@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:HotelApp"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -11,14 +12,17 @@
         Width="800" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="#FFFFFF">
+        ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    
     <Grid HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                >
         
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    x:Name="ModalDialogParent">
             <StackPanel Margin="10">
                 <ui:Image Source="Images\logo500.png"
                         Width="200"
@@ -53,5 +57,8 @@
                   Margin="10"
                   
                   MouseUp="Image_MouseUp"/>
+
+        <ui:SnackbarPresenter  x:Name="SnackbarPresenter" />
+
     </Grid>
 </Window>

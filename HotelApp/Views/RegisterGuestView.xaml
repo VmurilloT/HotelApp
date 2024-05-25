@@ -69,7 +69,7 @@
                         Appearance="Secondary"/>
             </StackPanel>
         </StackPanel>
-
+        <ui:SnackbarPresenter  x:Name="SnackbarPresenter" VerticalAlignment="Bottom" />
 
     </StackPanel>
 </Page>
