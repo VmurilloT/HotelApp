@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelApp.Models
 {
-    internal class httpResult
+    public class httpResult
     {
         public string? Message { get; set; }
         public bool Result { get; set; } = false;

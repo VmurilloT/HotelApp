@@ -6,6 +6,8 @@ namespace HotelApi.Models
     {
         
         public DbSet<Guest> Guests { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomTypes> RoomTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,7 +22,13 @@ namespace HotelApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Room>()
+                .HasOne(r => r.RoomType)
+                .WithMany()
+                .HasForeignKey(r => r.RoomTypeId);
+
             base.OnModelCreating(modelBuilder);
+
         }
 
     }

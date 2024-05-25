@@ -26,10 +26,12 @@
         <ui:NavigationView IsBackButtonVisible="Collapsed" 
                          OpenPaneLength="150"
                          Grid.Row="0"
-                         Grid.Column="0">
+                         Grid.Column="0" Navigated="NavigationView_Navigated"
+                         >
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Home"
-                                     Icon="{ui:SymbolIcon Layer24}"
+                <ui:NavigationViewItem Content="Cuartos"
+                                       Icon="{ui:SymbolIcon ConferenceRoom24}"
+                                       TargetPageType="{x:Type views:RoomsView}"
                                        
                                      />
                 <ui:NavigationViewItem Content="Reg. Huesped" 

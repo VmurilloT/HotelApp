@@ -26,7 +26,6 @@ namespace HotelApp.Views
     /// </summary>
     public partial class RegisterGuestView : Page
     {
-        private DispatcherTimer _timer;
         FontIcon xee;
         Snackbar snackbar;
         RegisterGuestViewModel vm;

@@ -25,9 +25,8 @@ namespace HotelApp.ViewModels
             httpResult result;
             if (validateFields())
             {
-                result = new Services.GuestService().RegisterGuest(_guestModel);
+                result = new Services.GuestService().Register(_guestModel).Result;
 
-                
                 RegisterGood(result);
                
             }

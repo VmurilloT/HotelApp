@@ -11,9 +11,14 @@ using System.Threading.Tasks;
 
 namespace HotelApp.Services
 {
-    internal class GuestService
+    public class GuestService : ICRUD<GuestModel>
     {
-        internal httpResult RegisterGuest(GuestModel guest)
+        public Task<List<GuestModel>> GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<httpResult> Register(GuestModel guest)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, @"https://localhost:7257/RegisterGhest");
 
@@ -27,13 +32,13 @@ namespace HotelApp.Services
                   .Add(new MediaTypeWithQualityHeaderValue("application/json"));
            
             
-            var response = client.SendAsync(request).Result;
-            var content  = response.Content.ReadAsStringAsync().Result;
+            var response = await client.SendAsync(request);
+            var content  = await response.Content.ReadAsStringAsync();
 
             httpResult deserialicer = JsonConvert.DeserializeObject<httpResult>(content);
 
             return deserialicer??new httpResult();
-        }       
+        }
 
     }
 }

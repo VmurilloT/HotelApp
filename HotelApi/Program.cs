@@ -43,4 +43,12 @@ app.MapPost("/RegisterGhest", ([FromBody] Guest guest) =>
     
 });
 
+app.MapGet("/GetRooms", () =>
+{
+    var rooms = new RoomsCRUD(Log.Logger).GetRooms();
+
+    return Results.Ok(rooms);
+
+});
+
 app.Run();

@@ -13,6 +13,9 @@
     <Compile Update="Views\RegisterGuestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\RoomsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RegisterGuestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RoomsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
