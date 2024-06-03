@@ -9,7 +9,7 @@ namespace HotelApi.Models
         [Key]
         public int RoomTypeId { get; set; }
     
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public int PeopleMax { get; set; }
     }

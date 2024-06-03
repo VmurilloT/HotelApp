@@ -23,6 +23,6 @@ namespace HotelApp.Models
                                     }
         public decimal PriceBase { set; get; }
 
-        public RoomTypesModel RoomType { set; get; }
+        public RoomTypesModel? RoomType { set; get; }
     }
 }

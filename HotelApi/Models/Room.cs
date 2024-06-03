@@ -13,6 +13,6 @@ namespace HotelApi.Models
         public int RoomTypeId { set; get; }
         public int Status { set; get; }
         public decimal PriceBase { set; get; }
-        public RoomTypes RoomType { set; get; }
+        public RoomTypes? RoomType { set; get; }
     }
 }

@@ -30,7 +30,7 @@ namespace HotelApp.Views
         {
             if(args.Page.GetType() == typeof(RoomsView))
             {
-                ((RoomsView)args.Page)._messenger.Send("Valio perrote");
+                ((RoomsView)args.Page).vm._messenger.Send("Cargar...");
             }
         }
     }

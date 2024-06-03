@@ -4,17 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      xmlns:local="clr-namespace:HotelApp.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="Transparent"
       Title="RoomsView">
     <Grid>
-        <ui:ListView ItemsSource="{Binding Rooms}"
-                  Background="Transparent"
-                  BorderThickness="0"
-                  SelectionMode="Single"
-                  HorizontalAlignment="Center">
+        <ui:ListView x:Name="LstRooms"
+                     ItemsSource="{Binding Rooms}"
+                     
+                     Background="red"
+                     BorderThickness="0"
+                     SelectionMode="Single"
+                     HorizontalAlignment="Center"
+                     MouseUp="LstRooms_MouseUp">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="800"/>
@@ -22,23 +24,25 @@
             </ListBox.ItemsPanel>
 
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ui:Card Width="200" Background="{Binding StatusColor}"
+                <DataTemplate x:Name="dato">
+                    <ui:Card Width="200"
+                             Background="{Binding StatusColor}"
                              BorderThickness="0">
                         <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <Image Width="50"
-                                       Height="50"/>
-                            </StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding RoomType.Name}" TextWrapping="Wrap"/>
-
-                            </StackPanel>
-                            </StackPanel>
+                                <StackPanel>
+                                    <Image Width="50"
+                                           Height="50"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding RoomType.Name}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                        </StackPanel>
                     </ui:Card>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ui:ListView> 
+        </ui:ListView>
+        <ui:ProgressRing IsIndeterminate="True" 
+                         Visibility="{Binding Loading}"/>
     </Grid>
 </Page>

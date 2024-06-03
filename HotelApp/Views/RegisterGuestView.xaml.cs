@@ -1,22 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm;
 using HotelApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HotelApp.Models;
-using System.Windows.Threading;
 using Wpf.Ui.Controls;
 
 namespace HotelApp.Views
@@ -27,14 +13,13 @@ namespace HotelApp.Views
     public partial class RegisterGuestView : Page
     {
         FontIcon xee;
-        Snackbar snackbar;
+        Snackbar? snackbar;
         RegisterGuestViewModel vm;
         public RegisterGuestView()
         {
             InitializeComponent();
             this.DataContext =  vm = new RegisterGuestViewModel();
             xee = new FontIcon();
-            snackbar = new Snackbar(SnackbarPresenter);
             vm._messenger.Register<GuestModel>(this, ValidateModel);
             vm._messenger.Register<httpResult>(this, RegisterGood);
 
@@ -46,7 +31,7 @@ namespace HotelApp.Views
             {
                 xee.Glyph = "✔️";
 
-                snackbar = new Snackbar(SnackbarPresenter)
+                snackbar = new Snackbar(this.SnackbarPresenter)
                 {
                     Title = "Correcto",
                     Content = "Huesped guardado correctamente.",

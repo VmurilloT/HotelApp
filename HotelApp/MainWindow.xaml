@@ -44,6 +44,7 @@
                                 Name="Txt_Psw"/>
                 <ui:Button Content="Entrar"
                            Click="Button_Click"
+                           Appearance="Primary"
                            Width="300"/>
             </StackPanel>
         

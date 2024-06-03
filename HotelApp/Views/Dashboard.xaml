@@ -25,6 +25,7 @@
         </Grid.ColumnDefinitions>
         <ui:NavigationView IsBackButtonVisible="Collapsed" 
                          OpenPaneLength="150"
+                          
                          Grid.Row="0"
                          Grid.Column="0" Navigated="NavigationView_Navigated"
                          >
@@ -39,8 +40,9 @@
                                        TargetPageType="{x:Type views:RegisterGuestView}"
                                      />
 
-                <ui:NavigationViewItem Content="Settings" 
-                                     Icon="{ui:SymbolIcon PeopleAdd24}"
+                <ui:NavigationViewItem Content="Reservar" 
+                                     Icon="{ui:SymbolIcon Book24}"
+                                       TargetPageType="{x:Type views:BookRoomView}"
                                      />
 
             </ui:NavigationView.MenuItems>

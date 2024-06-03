@@ -1,20 +1,9 @@
-﻿using HotelApp.Models;
-using HotelApp.ViewModels;
+﻿using HotelApp.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace HotelApp.Views
 {
@@ -23,25 +12,72 @@ namespace HotelApp.Views
     /// </summary>
     public partial class RoomsView : Page
     {
-
+        FontIcon xee;
+        Snackbar? snackbar;
         internal RoomsViewModel vm;
-        internal readonly WeakReferenceMessenger _messenger;
+        
         public RoomsView()
         {
             InitializeComponent();
             this.DataContext = vm = new RoomsViewModel();
-            _messenger = WeakReferenceMessenger.Default;
-
-            _messenger.Register<string>(this, LoadRooms);
+            xee = new FontIcon();
+            vm._messenger.Register<string>(this, LoadRooms);
+            vm._messenger.Register<object>(this, BooKRoom);
         }
 
+        private void BooKRoom(object recipient, object message)
+        {
+            //BookRoomView view = new BookRoomView();
+            //view.ShowDialog();
+        }
 
         private void LoadRooms(object recipient, string message)
         {
-            if(vm.Rooms.Count == 0)
+            try
             {
-                vm.LoadRoomsCommand.Execute(null);
+                if (vm.Rooms.Count == 0)
+                {
+                    vm.LoadRoomsCommand.Execute(null);
+                }
             }
+
+            catch {
+                xee.Glyph = "❗";
+
+                snackbar = new Snackbar(new SnackbarPresenter())
+                {
+                    Title = "Error",
+                    Content = $"hubo un problema al cargar los datos de los cuertos.",
+                    Timeout = TimeSpan.FromSeconds(5),
+                    Appearance = ControlAppearance.Danger,
+                    Icon = xee
+
+                };
+
+                snackbar.Show();
+            }
+        }
+
+        private void CardControl_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void LstRooms_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void LstRooms_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            //var item = sender as Wpf.Ui.Controls.ListView;
+            //if(item != null && item.SelectedItem != null) 
+            //{
+            //    BookRoomView v = new BookRoomView();
+            //    v.Item = item.SelectedItem;
+            //    v.ShowDialog();
+            //}
+            //item.SelectedItem = null;
         }
     }
 }

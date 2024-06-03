@@ -10,7 +10,7 @@ namespace HotelApp.Models
     {
         public int RoomTypeId { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public int PeopleMax { get; set; }
 

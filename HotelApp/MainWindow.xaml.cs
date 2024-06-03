@@ -39,8 +39,6 @@ namespace HotelApp
             }
             else
             {
-
-                
                 FontIcon xee = new FontIcon();
                 xee.Glyph = "❗";
 
@@ -55,7 +53,6 @@ namespace HotelApp
                 };
 
                 snackbar.Show();
-                
             }
         }
 

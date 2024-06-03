@@ -33,9 +33,11 @@ namespace HotelApp.Services
            
             
             var response = await client.SendAsync(request);
-            var content  = await response.Content.ReadAsStringAsync();
+            string content  = await response.Content.ReadAsStringAsync();
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             httpResult deserialicer = JsonConvert.DeserializeObject<httpResult>(content);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             return deserialicer??new httpResult();
         }
