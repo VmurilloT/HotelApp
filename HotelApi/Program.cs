@@ -32,15 +32,8 @@ app.MapPost("/RegisterGhest", ([FromBody] Guest guest) =>
 {
     var guests = new GuestCRUD(Log.Logger).SetGuest(guest);
 
-    if (guests.Result)
-    {
-        return Results.Ok(guests);
-    }
-    else
-    {
-        return Results.Problem();
-    }
-    
+    return Results.Ok(guests);
+      
 });
 
 app.MapGet("/GetRooms", () =>
@@ -48,6 +41,16 @@ app.MapGet("/GetRooms", () =>
     var rooms = new RoomsCRUD(Log.Logger).GetRooms();
 
     return Results.Ok(rooms);
+
+});
+
+app.MapPost("/SetReservation", ([FromBody] Reservation reservation) =>
+{
+    var bookRoom = new BookRoomCRUD(Log.Logger).SetBookRoom(reservation);
+
+    return Results.Ok(bookRoom);
+    
+
 
 });
 

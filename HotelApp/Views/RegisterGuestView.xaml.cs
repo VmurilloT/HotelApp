@@ -66,8 +66,8 @@ namespace HotelApp.Views
             {
                 TxtPhone.BorderBrush = Brushes.Red;
             }
-            
-            xee.Glyph = "❗";
+
+            xee.Glyph = "✖️";
 
             snackbar = new Snackbar(SnackbarPresenter)
             {

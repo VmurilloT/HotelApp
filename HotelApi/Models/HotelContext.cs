@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace HotelApi.Models
 {
@@ -8,6 +9,8 @@ namespace HotelApi.Models
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomTypes> RoomTypes { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +29,9 @@ namespace HotelApi.Models
                 .HasOne(r => r.RoomType)
                 .WithMany()
                 .HasForeignKey(r => r.RoomTypeId);
+
+            modelBuilder.Entity<Reservation>()
+                 .Property(r => r.ReservationId).UseIdentityColumn();
 
             base.OnModelCreating(modelBuilder);
 

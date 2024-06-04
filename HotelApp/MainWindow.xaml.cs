@@ -40,7 +40,7 @@ namespace HotelApp
             else
             {
                 FontIcon xee = new FontIcon();
-                xee.Glyph = "❗";
+                xee.Glyph = "✖️";
 
                 Snackbar snackbar = new Snackbar(SnackbarPresenter)
                 {

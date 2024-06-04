@@ -19,13 +19,31 @@ namespace HotelApp.Views
             this.DataContext = vm = new BookRoomViewModel();
             xee = new FontIcon();
             vm._messenger.Register<BookRoomViewModel.sValidateDates>(this, ValidateDates);
+            vm._messenger.Register<string>(this, DateChanged);
+        }
+
+        private void DateChanged(object recipient, string message)
+        {
+            xee.Glyph = "❗";
+
+            snackbar = new Snackbar(this.SnackbarPresenter)
+            {
+                Title = "Alerta",
+                Content = message,
+                Timeout = TimeSpan.FromSeconds(5),
+                Appearance = ControlAppearance.Caution,
+                Icon = xee
+
+            };
+
+            snackbar.Show();
         }
 
         private void ValidateDates(object recipient, BookRoomViewModel.sValidateDates message)
         {
             
 
-            xee.Glyph = "❗";
+            xee.Glyph = "✖️";
 
             snackbar = new Snackbar(this.SnackbarPresenter)
             {

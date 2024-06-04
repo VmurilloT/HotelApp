@@ -32,6 +32,11 @@ namespace HotelApp.ViewModels
                     _messenger.Send(new sValidateDates() { date1 = "Hoy", date2 = "CheckIn"});
                     value = DateTime.Now;
                 }
+                else if(value.Date > _dateOut.Date)
+                {
+                    DateOut = value;
+                    _messenger.Send("Fecha del CheckOut cambio!");
+                }
                 SetProperty(ref _dateIn, value);  
             } 
         }

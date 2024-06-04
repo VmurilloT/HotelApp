@@ -42,7 +42,7 @@ namespace HotelApp.Views
             }
 
             catch {
-                xee.Glyph = "❗";
+                xee.Glyph = "✖️";
 
                 snackbar = new Snackbar(new SnackbarPresenter())
                 {
