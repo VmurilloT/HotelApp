@@ -6,32 +6,71 @@
         xmlns:local="clr-namespace:HotelApp.Views"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="BookRoomView" Height="450" Width="800"
-        >
+        Title="BookRoomView" 
+        d:DesignHeight="450" d:DesignWidth="800"
+        Background="Transparent">
     <Grid Margin="10">
-        <StackPanel Orientation="Horizontal">
-            <StackPanel>
-                <ui:TextBlock Text="Check In"/>
-                <DatePicker Width="150" 
-                            SelectedDate="{Binding DateIn}"
-                            Text="{Binding DateIn}"
-                            SelectedDateFormat="Short"
-                            x:Name="txtCheckIn"/>
-            </StackPanel>
-            <StackPanel Margin="10,0,0,0">
-                <ui:TextBlock Text="Check Out"/>
-                <DatePicker Width="150" 
-                            
-                            SelectedDate="{Binding DateOut}"
-                            Text="{Binding DateOut}"
-                            SelectedDateFormat="Short"/>
-            </StackPanel>
+        <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <ui:TextBlock Text="Check In"/>
+                            <DatePicker Width="150" 
+                                        SelectedDate="{Binding DateIn}"
+                                        Text="{Binding DateIn}"
+                                        SelectedDateFormat="Short"
+                                        x:Name="txtCheckIn"/>
+                        </StackPanel>
+                        <StackPanel Margin="10,0,0,0">
+                            <ui:TextBlock Text="Check Out"/>
+                            <DatePicker Width="150" 
+                                        SelectedDate="{Binding DateOut}"
+                                        Text="{Binding DateOut}"
+                                        SelectedDateFormat="Short"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+            <ui:ListView x:Name="LstRooms"
+                         ItemsSource="{Binding Rooms}"
+                         Background="red"
+                         BorderThickness="0"
+                         SelectionMode="Single"
+                         HorizontalAlignment="Center">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Width="800"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="dato">
+                        <ui:Card Width="200"
+                                 Background="{Binding StatusColor}"
+                                 BorderThickness="0">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Image Width="50"
+                                           Height="50"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding RoomType.Name}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ui:Card>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ui:ListView>
+            
+            
+                    <ui:Button Content="Aceptar" 
+                               HorizontalAlignment="Center"
+                               Command="{Binding presionameCommand}"
+                               Appearance="Primary"/>
+                    
         </StackPanel>
-        
-        <ui:Button Content="Aceptar" 
-                   HorizontalAlignment="Center"
-                   Command="{Binding presionameCommand}"
-                   Appearance="Primary"/>
+
         <ui:SnackbarPresenter  x:Name="SnackbarPresenter" />
+        <ui:ProgressRing IsIndeterminate="True" 
+                         Visibility="{Binding Loading}"/>
     </Grid>
 </Page>

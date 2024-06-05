@@ -13,8 +13,7 @@ namespace HotelApp.Services
             var request = new HttpRequestMessage(HttpMethod.Get, @"https://localhost:7257/GetRooms");
 
             var client = new HttpClient();
-
-
+            
             client.DefaultRequestHeaders
                   .Accept
                   .Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -23,10 +22,10 @@ namespace HotelApp.Services
             var response = await client.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
 
-            List<RoomsModel> deserialicer = JsonConvert.DeserializeObject<List<RoomsModel>>(content);
+            var deserializer = JsonConvert.DeserializeObject<List<RoomsModel>>(content);
 
-            return deserialicer ?? new List<RoomsModel>();
-            
+            return deserializer ?? [];
+ 
         }
 
         public async Task<httpResult> Register(RoomsModel entity)

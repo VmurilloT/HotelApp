@@ -2,6 +2,7 @@ using HotelApi.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using HotelApi.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,13 +45,18 @@ app.MapGet("/GetRooms", () =>
 
 });
 
+app.MapPost("/GetFreeRooms", ([FromBody] FreeRoomsFilter filter)=>
+{
+    var freeRooms = new BookRoomCrud(Log.Logger).GetFreeRooms(filter.CheckIn, filter.CheckOut);
+    return Results.Ok(freeRooms);
+});
+
 app.MapPost("/SetReservation", ([FromBody] Reservation reservation) =>
 {
-    var bookRoom = new BookRoomCRUD(Log.Logger).SetBookRoom(reservation);
+    var bookRoom = new BookRoomCrud(Log.Logger).SetBookRoom(reservation);
 
     return Results.Ok(bookRoom);
     
-
 
 });
 

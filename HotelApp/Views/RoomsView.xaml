@@ -8,11 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Background="Transparent"
       Title="RoomsView">
-    <Grid>
+    <Grid Margin="10">
         <ui:ListView x:Name="LstRooms"
                      ItemsSource="{Binding Rooms}"
-                     
-                     Background="red"
                      BorderThickness="0"
                      SelectionMode="Single"
                      HorizontalAlignment="Center"

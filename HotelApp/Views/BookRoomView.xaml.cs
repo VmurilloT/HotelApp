@@ -18,8 +18,8 @@ namespace HotelApp.Views
             InitializeComponent();
             this.DataContext = vm = new BookRoomViewModel();
             xee = new FontIcon();
-            vm._messenger.Register<BookRoomViewModel.sValidateDates>(this, ValidateDates);
-            vm._messenger.Register<string>(this, DateChanged);
+            vm.Messenger.Register<BookRoomViewModel.sValidateDates>(this, ValidateDates);
+            vm.Messenger.Register<string>(this, DateChanged);
         }
 
         private void DateChanged(object recipient, string message)
@@ -48,7 +48,7 @@ namespace HotelApp.Views
             snackbar = new Snackbar(this.SnackbarPresenter)
             {
                 Title = "Error",
-                Content = $"La fecha de {message.date1} no puede ser mayor a la fecha de {message.date2}",
+                Content = $"La fecha de {message.Date1} no puede ser mayor a la fecha de {message.Date2}",
                 Timeout = TimeSpan.FromSeconds(5),
                 Appearance = ControlAppearance.Danger,
                 Icon = xee
