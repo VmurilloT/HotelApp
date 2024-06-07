@@ -11,5 +11,6 @@ namespace HotelApp.Services
     {
         Task<httpResult> Register(T entity);
         Task<List<T>> GetData();
+        Task<object> GetData(List<object> parameters);
     }
 }

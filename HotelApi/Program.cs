@@ -45,7 +45,7 @@ app.MapGet("/GetRooms", () =>
 
 });
 
-app.MapPost("/GetFreeRooms", ([FromBody] FreeRoomsFilter filter)=>
+app.MapGet("/GetFreeRooms", ([FromBody] Reservation filter)=>
 {
     var freeRooms = new BookRoomCrud(Log.Logger).GetFreeRooms(filter.CheckIn, filter.CheckOut);
     return Results.Ok(freeRooms);

@@ -31,16 +31,16 @@
                     
             <ui:ListView x:Name="LstRooms"
                          ItemsSource="{Binding Rooms}"
-                         Background="red"
                          BorderThickness="0"
                          SelectionMode="Single"
-                         HorizontalAlignment="Center">
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="800"/>
+                        <WrapPanel Width="750"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-
                 <ListView.ItemTemplate>
                     <DataTemplate x:Name="dato">
                         <ui:Card Width="200"

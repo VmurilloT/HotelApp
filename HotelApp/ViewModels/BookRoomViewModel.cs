@@ -18,10 +18,10 @@ namespace HotelApp.ViewModels
         private async Task LoadRooms()
         {
             Loading = Visibility.Visible;
-            ICRUD<RoomsModel> service = new RoomService();
-            var rooms = await service.GetData();
+            ICRUD<ReservationModel> service = new BookRoomService();
+            var rooms = await service.GetData(new List<object>(){DateIn, DateOut});
             Rooms.Clear();
-            foreach (var item in rooms)
+            foreach (var item in (List<RoomsModel>)rooms)
             {
                 Rooms.Add(new RoomsModel
                 {
@@ -54,7 +54,7 @@ namespace HotelApp.ViewModels
             get => _dateIn;
             set {
                 
-                LoadRoomsCommand.Execute(null);
+                
                 if (value.Date < DateTime.Now.Date)
                 {
                     Messenger.Send(new sValidateDates() { Date1 = "Hoy", Date2 = "CheckIn"});
@@ -65,7 +65,8 @@ namespace HotelApp.ViewModels
                     DateOut = value;
                     Messenger.Send("Fecha del CheckOut cambio!");
                 }
-                SetProperty(ref _dateIn, value);  
+                SetProperty(ref _dateIn, value); 
+                LoadRoomsCommand.Execute(null);
             } 
         }
 
@@ -82,6 +83,7 @@ namespace HotelApp.ViewModels
                     value = _dateIn.Date;
                 }
                 SetProperty(ref _dateOut, value);
+                LoadRoomsCommand.Execute(null);
             }
         }
 

@@ -18,15 +18,19 @@ namespace HotelApp.Services
             throw new NotImplementedException();
         }
 
+        public Task<object> GetData(List<object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<httpResult> Register(GuestModel guest)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, @"https://localhost:7257/RegisterGhest");
-
-            var client = new HttpClient();
             request.Content = new StringContent(JsonConvert.SerializeObject(guest), 
-                                                Encoding.UTF8,
-                                                "application/json");
-
+                Encoding.UTF8,
+                "application/json");
+            
+            var client = new HttpClient();
             client.DefaultRequestHeaders
                   .Accept
                   .Add(new MediaTypeWithQualityHeaderValue("application/json"));

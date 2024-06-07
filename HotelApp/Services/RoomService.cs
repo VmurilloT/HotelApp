@@ -28,6 +28,11 @@ namespace HotelApp.Services
  
         }
 
+        public Task<object> GetData(List<object> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<httpResult> Register(RoomsModel entity)
         {
             return new httpResult();
