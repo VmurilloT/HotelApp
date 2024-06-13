@@ -8,7 +8,25 @@ namespace HotelApi.DAL
     [SuppressMessage("ReSharper", "FormatStringProblem")]
     public class BookRoomCrud(Serilog.ILogger logger)
     {
-        private const string SqlQuery = @"SELECT [r].[RoomId], [r].[Name], [r].[PriceBase], [r].[RoomTypeId], [r].[Status] FROM [Room] AS [r] WHERE Not Exists (SELECT 1 FROM [Reservation] AS [RS] WHERE [r].[RoomId] = [RS].[RoomId] AND [RS].[CheckIn] >= @CheckInDate AND ([RS].[CheckOut] <= @CheckOutDate AND [RS].[CheckOut] >= @CheckOutDate) AND [RS].[Status] = 'A');";
+        private const string SqlQuery =
+            @"Select [RoomId], [Name], [PriceBase], [RoomTypeId], [Status] From (Select [r].[RoomId], [r].[Name], [r].[PriceBase], [r].[RoomTypeId], [r].[Status]   From Room R 
+            Where Not Exists (Select 1
+                              From Reservation RS
+                              Where R.RoomId = RS.RoomId
+                                and @CheckInDate Between CheckIn and CheckOut
+                                and RS.Status = 'A')) R
+            Where Not Exists (Select 1
+                              From Reservation RS
+                              Where R.RoomId = RS.RoomId
+                                and @CheckOutDate Between CheckIn and CheckOut
+                                and RS.Status = 'A')and
+        Not Exists (Select 1
+                    From Reservation RS
+                    Where R.RoomId = RS.RoomId
+                      and (CheckIn Between @CheckInDate and @CheckOutDate
+                          or CheckOut Between @CheckInDate and @CheckOutDate) 
+                      and RS.Status = 'A')";
+          
 
         private Serilog.ILogger Logger { get; } = logger;
 
